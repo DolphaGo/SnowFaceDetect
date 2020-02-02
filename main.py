@@ -92,7 +92,8 @@ while True:
             0, 0, 255), thickness=2, lineType=cv2.LINE_AA)
 
         flag = True
-        cv2.imshow('img', result)
+        cv2.imshow('result', result)
+        cv2.imshow('img', img)
         cv2.waitKey(1)
 
     if flag == False:
