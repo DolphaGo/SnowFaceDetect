@@ -37,16 +37,13 @@ def overlay_transparent(background_img, img_to_overlay_t, x, y, overlay_size=Non
                               mask=cv2.bitwise_not(mask))
     img2_fg = cv2.bitwise_and(img_to_overlay_t, img_to_overlay_t, mask=mask)
 
-    bg_img[int(y-h/2):int(y+h/2), int(x-w/2)           :int(x+w/2)] = cv2.add(img1_bg, img2_fg)
+    bg_img[int(y-h/2):int(y+h/2), int(x-w/2)
+               :int(x+w/2)] = cv2.add(img1_bg, img2_fg)
 
     # convert 4 channels to 4 channels
     bg_img = cv2.cvtColor(bg_img, cv2.COLOR_BGRA2BGR)
 
     return bg_img
-
-
-face_roi = []
-face_sizes = []
 
 
 while True:
@@ -74,8 +71,9 @@ while True:
         # mean
         center_x, center_y = np.mean(shape_2d, axis=0).astype(np.int)
 
+        # 오버레이를 덧댄 결과. 다음과 같이 위치를 세부 조정 할 수 있다.
         result = overlay_transparent(
-            ori, overlay, center_x, center_y-25, overlay_size=(face_size, face_size))
+            ori, overlay, center_x, center_y-20, overlay_size=(face_size, face_size))
 
         # visualize
         img = cv2.rectangle(img, pt1=(f.left(), f.top()),
